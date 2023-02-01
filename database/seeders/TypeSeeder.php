@@ -2,9 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Type;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Schema;
+use App\Models\Type;
 use illuminate\Support\Str;
 
 class TypeSeeder extends Seeder
@@ -16,8 +17,7 @@ class TypeSeeder extends Seeder
      */
     public function run()
     {
-
-        Type::truncate();
+        
         $types=[   
             'Business implementation',
             'Foundational (business improvement)',
