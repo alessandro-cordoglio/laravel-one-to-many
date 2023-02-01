@@ -91,10 +91,23 @@ class ProjectController extends Controller
     {
         $data=$request->validated();
 
+        if ( isset($data['cover_image']) ) {
+            if( $project->cover_image ) {
+                Storage::delete($project->cover_image);
+            }
+            $data['cover_image'] = Storage::put('uploads', $data['cover_image']);
+        }
+
+        if( isset($data['no_image']) && $project->cover_image  ) {
+            Storage::delete($project->cover_image);
+            $project->cover_image = null;
+        }
+
         $project->title = $data['title'];
         $project->client = $data['client'];
         $project->description = $data['description'];
         $project->slug = Str::slug($data['title']);
+
         $project->update();
 
         return redirect()->route('admin.projects.index');
