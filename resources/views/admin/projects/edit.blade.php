@@ -28,6 +28,15 @@
         <label for="description" class="form-label mt-4">Descrizione Progetto</label>
         <textarea class="form-control" name="description" id="description" style="width: 30rem; height:10rem">{{old('description', $project->description)}}</textarea>
 
+
+        <label for="type" class="form-label">Tipologia</label>
+        <select class="form-control" name="type_id" id="type" style="width:20rem">
+            <option value="">Nessuna tipologia</option>
+            @foreach ($types as $type)
+                <option value="{{$type->id}}" {{old('type_id', $project->type_id) == $type->id ? 'selected' : ''}} >{{$type->name}}</option>
+            @endforeach
+        </select>
+
         <button type="submit" class="my-5 btn btn-success">Modifica</button>
     </form>
 @endsection
