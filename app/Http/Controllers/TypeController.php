@@ -15,7 +15,9 @@ class TypeController extends Controller
      */
     public function index()
     {
-        //
+        $types= Type::all();
+
+        return view('admin.types.index', compact('types'));
     }
 
     /**
@@ -45,9 +47,10 @@ class TypeController extends Controller
      * @param  \App\Models\Type  $type
      * @return \Illuminate\Http\Response
      */
-    public function show(Type $type)
+    public function show(string $slug)
     {
-        //
+        $type= Type::where('slug', $slug)->first();
+        return view('admin.types.show', compact('type'));
     }
 
     /**
